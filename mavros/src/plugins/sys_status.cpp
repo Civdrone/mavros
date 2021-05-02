@@ -18,6 +18,7 @@
 
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/EstimatorStatus.h>
+#include <mavros_msgs/EkfStatus.h>
 #include <mavros_msgs/ExtendedState.h>
 #include <mavros_msgs/StreamRate.h>
 #include <mavros_msgs/SetMode.h>
@@ -491,6 +492,7 @@ public:
 		extended_state_pub = nh.advertise<mavros_msgs::ExtendedState>("extended_state", 10);
 		batt_pub = nh.advertise<BatteryMsg>("battery", 10);
 		estimator_status_pub = nh.advertise<mavros_msgs::EstimatorStatus>("estimator_status", 10);
+		ekf_status_pub = nh.advertise<mavros_msgs::EkfStatus>("ekf_status", 10);
 		statustext_pub = nh.advertise<mavros_msgs::StatusText>("statustext/recv", 10);
 		statustext_sub = nh.subscribe("statustext/send", 10, &SystemStatusPlugin::statustext_cb, this);
 		rate_srv = nh.advertiseService("set_stream_rate", &SystemStatusPlugin::set_rate_cb, this);
@@ -514,6 +516,7 @@ public:
 			make_handler(&SystemStatusPlugin::handle_extended_sys_state),
 			make_handler(&SystemStatusPlugin::handle_battery_status),
 			make_handler(&SystemStatusPlugin::handle_estimator_status),
+			make_handler(&SystemStatusPlugin::handle_ekf_status),
 		};
 	}
 
@@ -533,6 +536,7 @@ private:
 	ros::Publisher extended_state_pub;
 	ros::Publisher batt_pub;
 	ros::Publisher estimator_status_pub;
+	ros::Publisher ekf_status_pub;
 	ros::Publisher statustext_pub;
 	ros::Subscriber statustext_sub;
 	ros::ServiceServer rate_srv;
@@ -961,6 +965,36 @@ private:
 		// [[[end]]] (checksum: da59238f4d4337aeb395f7205db08237)
 
 		estimator_status_pub.publish(est_status_msg);
+	}
+
+void handle_ekf_status(const mavlink::mavlink_message_t *msg, mavlink::ardupilotmega::msg::EKF_STATUS_REPORT &status)
+	{
+		using EKFF = mavlink::ardupilotmega::EKF_STATUS_FLAGS;
+
+		auto ekf_status_msg = boost::make_shared<mavros_msgs::EkfStatus>();
+		ekf_status_msg->header.stamp = ros::Time::now();
+
+		ekf_status_msg->attitude_status_flag = !!(status.flags & enum_value(EKFF::ATTITUDE));
+		ekf_status_msg->velocity_horiz_status_flag = !!(status.flags & enum_value(EKFF::VELOCITY_HORIZ));
+		ekf_status_msg->velocity_vert_status_flag = !!(status.flags & enum_value(EKFF::VELOCITY_VERT));
+		ekf_status_msg->pos_horiz_rel_status_flag = !!(status.flags & enum_value(EKFF::POS_HORIZ_REL));
+		ekf_status_msg->pos_horiz_abs_status_flag = !!(status.flags & enum_value(EKFF::POS_HORIZ_REL));
+		ekf_status_msg->pos_vert_abs_status_flag = !!(status.flags & enum_value(EKFF::POS_VERT_ABS));
+		ekf_status_msg->pos_vert_agl_status_flag = !!(status.flags & enum_value(EKFF::POS_VERT_AGL));
+		ekf_status_msg->const_pos_mode_status_flag = !!(status.flags & enum_value(EKFF::CONST_POS_MODE));
+		ekf_status_msg->pred_pos_horiz_rel_status_flag = !!(status.flags & enum_value(EKFF::PRED_POS_HORIZ_REL));
+		ekf_status_msg->pred_pos_horiz_abs_status_flag = !!(status.flags & enum_value(EKFF::PRED_POS_HORIZ_ABS));
+		ekf_status_msg->uninitialized_status_flag = !!(status.flags & enum_value(EKFF::UNINITIALIZED));
+		ekf_status_msg->compass_variance = status.compass_variance;
+		ekf_status_msg->pos_horiz_variance = status.pos_horiz_variance;
+		ekf_status_msg->pos_vert_variance = status.pos_vert_variance;
+		ekf_status_msg->terrain_alt_variance = status.terrain_alt_variance;
+		ekf_status_msg->velocity_variance = status.velocity_variance;
+
+		
+		// [[[end]]] (checksum: da59238f4d4337aeb395f7205db08237)
+
+		ekf_status_pub.publish(ekf_status_msg);
 	}
 
 	/* -*- timer callbacks -*- */
