@@ -620,6 +620,8 @@ private:
 			ROS_DEBUG_STREAM_NAMED("fcu", "FCU: " << text);
 			break;
 		// [[[end]]] (checksum: 315aa363b5ecb4dda66cc8e1e3d3aa48)
+		case 10:
+			break;
 		default:
 			ROS_WARN_STREAM_NAMED("fcu", "FCU: UNK(" << +severity << "): " << text);
 			break;

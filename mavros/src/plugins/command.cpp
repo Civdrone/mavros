@@ -127,8 +127,8 @@ private:
 			}
 		}
 
-		ROS_WARN_THROTTLE_NAMED(10, "cmd", "CMD: Unexpected command %u, result %u",
-			ack.command, ack.result);
+		// ROS_WARN_THROTTLE_NAMED(10, "cmd", "CMD: Unexpected command %u, result %u",
+		// 	ack.command, ack.result);
 	}
 
 	/* -*- mid-level functions -*- */
