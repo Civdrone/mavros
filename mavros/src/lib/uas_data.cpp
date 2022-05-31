@@ -53,11 +53,11 @@ UAS::UAS() :
 
 	// Publish helper TFs used for frame transformation in the odometry plugin
 	std::vector<geometry_msgs::TransformStamped> transform_vector;
-	add_static_transform("map", "map_ned", Eigen::Affine3d(ftf::quaternion_from_rpy(M_PI, 0, M_PI_2)),transform_vector);
-	add_static_transform("odom", "odom_ned", Eigen::Affine3d(ftf::quaternion_from_rpy(M_PI, 0, M_PI_2)),transform_vector);
-	add_static_transform("base_link", "base_link_frd", Eigen::Affine3d(ftf::quaternion_from_rpy(M_PI, 0, 0)),transform_vector);
+	add_static_transform("mavros_map", "mavros_map_ned", Eigen::Affine3d(ftf::quaternion_from_rpy(M_PI, 0, M_PI_2)),transform_vector);
+	add_static_transform("mavros_odom", "mavros_odom_ned", Eigen::Affine3d(ftf::quaternion_from_rpy(M_PI, 0, M_PI_2)),transform_vector);
+	add_static_transform("mavros_base_link", "mavros_base_link_frd", Eigen::Affine3d(ftf::quaternion_from_rpy(M_PI, 0, 0)),transform_vector);
 
-	tf2_static_broadcaster.sendTransform(transform_vector);
+	// tf2_static_broadcaster.sendTransform(transform_vector);
 }
 
 /* -*- heartbeat handlers -*- */
@@ -273,5 +273,5 @@ void UAS::publish_static_transform(const std::string &frame_id, const std::strin
 	static_transformStamped.child_frame_id = child_id;
 	tf::transformEigenToMsg(tr, static_transformStamped.transform);
 
-	tf2_static_broadcaster.sendTransform(static_transformStamped);
+	// tf2_static_broadcaster.sendTransform(static_transformStamped);
 }
