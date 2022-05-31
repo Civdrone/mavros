@@ -73,6 +73,7 @@ add_library(mavros_extras
   src/plugins/distance_sensor.cpp
   src/plugins/esc_status.cpp
   src/plugins/fake_gps.cpp
+  src/plugins/gps_input.cpp
   src/plugins/gps_rtk.cpp
   src/plugins/gps_status.cpp
   src/plugins/landing_target.cpp
