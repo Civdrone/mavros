@@ -96,6 +96,7 @@ private:
 		gps_input.vdop               = ros_msg->vdop;
 		gps_input.fix_type           = ros_msg->fix_type;
 		gps_input.satellites_visible = ros_msg->satellites_visible;
+		gps_input.yaw 				 = ros_msg->yaw;
 
 		UAS_FCU(m_uas)->send_message_ignore_drop(gps_input);
 	}
