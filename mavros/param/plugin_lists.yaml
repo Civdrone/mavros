@@ -1,18 +1,27 @@
 mavros:
   ros__parameters:
-    plugin_denylist:
+    plugin_allowlist: 
+      - "sys"
+      - "sys_status"
+      - "command"
+      - "actuator_control"
+      - "global_position"
+      - "imu"
+      - "rc_io"
+      - "param"
+      - "gps_status"
+
+    # plugin_denylist:
       # common
-      - "mavros/actuator_control"
-      - "mavros/altitude"
-      - "mavros/ftp"
+      # - "mavros/actuator_control"
+      # - "mavros/altitude"
+      # - "mavros/ftp"
       # extras
-      - "mavros_extras/debug_value"
-      - "mavros_extras/hil"
-      - "mavros_extras/vibration"
-      - "mavros_extras/vision_pose"
-      - "mavros_extras/wheel_odometry"
-    # plugin_allowlist: 
-    #   - "mavros/sys_*"
+      # - "mavros_extras/debug_value"
+      # - "mavros_extras/hil"
+      # - "mavros_extras/vibration"
+      # - "mavros_extras/vision_pose"
+      # - "mavros_extras/wheel_odometry"
 
 
 ### plugin list ###
