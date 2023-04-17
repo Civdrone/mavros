@@ -1,0 +1,202 @@
+mavros_node:
+  ros__parameters:
+    fcu_url: "/dev/ttyPixhawk:57600"
+    # fcu_url: "tcp://127.0.0.1:5760"
+    gcs_url: ""
+    tgt_system: 1
+    tgt_component: 1
+
+###################
+### plugin params ###
+###################
+
+# mavros/actuator_control None
+# mavros/adsb None
+
+# mavros_extras/altitude:
+#   ros__parameters: 
+#   frame_id: map
+
+# mavros_extras/cam_imu_sync None
+# mavros_extras/camera None
+
+# mavros/command:
+#   ros__parameters:
+#     use_comp_id_system_control: true
+#     command_ack_timeout: 5000ms
+
+# mavros_extras/companion_process_status None
+# mavros_extras/debug_value None
+# mavros_extras/distance_sensor None
+# mavros_extras/esc_status None
+# mavros_extras/esc_telemetry None
+# mavros_extras/fake_gps None
+# mavros/ftp None
+
+# mavros/geofence:
+#   ros__parameters:
+#     pull_after_gcs: true
+#     use_mission_item_int: true
+
+# mavros/global_position:
+#   ros__parameters:
+#     frame_id: map
+#     child_frame_id: base_link
+#     rot_covariance: 99999.0
+#     gps_uere: 1.0
+#     use_relative_alt: true
+#     tf:
+#       send: false
+#       frame_id: map
+#       global_frame_id: earth
+#       child_frame_id: base_link
+
+# mavros_extras/gps_input None
+# mavros_extras/gps_rtk None
+# mavros_extras/gps_status None
+# mavros_extras/hil None
+# mavros/home_position None
+
+# mavros/imu:
+#   ros__parameters:
+#     frame_id: true
+#     linear_acceleration_stdev: 0.0003
+#     angular_velocity_stdev: 0.02 * (M_PI / 180.0)
+#     orientation_stdev: 1.0
+#     magnetic_stdev: 0.0
+
+# mavros_extras/landing_target None
+# mavros/gps_rtk None
+
+# mavros/local_position:
+#   ros__parameters:
+#     frame_id: map
+#     tf:
+#       send: false
+#       frame_id: map
+#       child_frame_id: base_link
+
+# mavros_extras/log_transfer None
+# mavros_extras/mag_calibration_status None
+# mavros/manual_control None
+# mavros_extras/mocap_pose_estimate None
+# mavros_extras/mount_control None
+# mavros/nav_controller_output None
+# mavros_extras/obstacle_distance None
+
+# mavros_extras/odometry:
+#   ros__parameters:
+#     fcu:
+#       odom_parent_id_des: map
+#       odom_child_id_des: map
+
+# mavros_extras/onboard_computer_status None
+# param None
+# mavros_extras None
+
+# mavros_extras/px4flow:
+#   ros__parameters:
+#     frame_id: px4flow
+#     ranger_fov: 0.119428926
+#     ranger_min_range: 0.3
+#     ranger_max_range: 5.0
+
+# mavros/rallypoint:
+#   ros__parameters:
+#     pull_after_gcs: true
+#     use_mission_item_int: true
+
+# mavros_extras/rangefinder None
+# mavros/rc_io None
+# mavros/setpoint_accel None
+
+# mavros/setpoint_attitude:
+#     ros__parameters:
+#       reverse_thrust: false
+#       use_quaternion: false
+
+# mavros/setpoint_position:
+#     ros__parameters:
+#       mav_frame: LOCAL_NED
+
+# mavros/setpoint_raw:
+#     ros__parameters:
+#       thrust_scaling: NAN
+
+# mavros/setpoint_trajectory:
+#     ros__parameters:
+#       frame_id: map
+#       mav_frame: LOCAL_NED
+
+# mavros/setpoint_velocity:
+#     ros__parameters:
+#       mav_frame: LOCAL_NED
+
+# mavros/sys_status:
+#   ros__parameters:
+#     conn_timeout: 10.0
+#     min_voltage: 10.0
+#     disable_diag: false
+#     heartbeat_mav_type: ONBOARD_CONTROLLER
+#     heartbeat_rate: 1.0
+
+# mavros/sys_time:
+#   ros__parameters:
+#     time_ref_source: fcu
+#     timesync_mode: MAVLINK
+#     system_time_rate: 0.0
+#     timesync_rate: 0.0
+#     timesync_alpha_initial: 0.05
+#     timesync_beta_initial: 0.05
+#     timesync_alpha_final: 0.003
+#     timesync_beta_final: 0.003
+#     convergence_window: 500
+#     max_rtt_sample: 10
+#     max_deviation_sample: 10
+#     max_consecutive_high_rtt: 10
+#     max_consecutive_high_deviation: 10
+
+# mavros_extras/terrain None
+# mavros_extras/tdr_radio None
+# mavros_extras/trajectory None
+# mavros_extras/tunnel None
+# mavros_extras/vfr_hud None
+
+# mavros_extras/vibration:
+#   ros__parameters:
+#     frame_id: base_link
+
+# mavros_extras/vision_pose:
+#   ros__parameters:
+#     tf/listen: false
+#     tf/frame_id: map
+#     tf/child_frame_id: vision_estimate
+#     tf/rate_limit: 10.0
+
+# mavros_extras/vision_speed None
+
+# mavros/waypoint:
+#   ros__parameters:
+#     pull_after_gcs: true
+#     use_mission_item_int: true
+#     enable_partial_push: 2
+
+# mavros_extras/wheel_odomotry
+#   ros__parameters:
+#     send_raw: false
+#     count: 2
+#     use_rpm: false
+#     send_twist: false
+#     frame_id: odom
+#     child_frame_id: base_link
+#     vel_error: 0.1
+#     tf:
+#       frame_id: odom
+#       child_frame_id: base_link
+#       send: false
+#     wheel1:
+#       x: 0.0
+#       y: 0.0
+#       radius: 0.05
+
+# mavros/wind_estimation None
