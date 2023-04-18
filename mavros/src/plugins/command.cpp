@@ -365,6 +365,7 @@ private:
     mavros_msgs::srv::CommandLong::Response::SharedPtr res)
   {
     // TODO(vooon): rewrite to use async service server
+    RCLCPP_WARN(get_logger(), "command_long_cb - start");
     send_command_long_and_wait(
       req->broadcast,
       req->command, req->confirmation,
@@ -373,6 +374,7 @@ private:
       req->param5, req->param6,
       req->param7,
       res->success, res->result);
+    RCLCPP_WARN(get_logger(), "command_long_cb - done");
   }
 
   void command_int_cb(
